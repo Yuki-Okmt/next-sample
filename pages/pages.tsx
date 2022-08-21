@@ -1,14 +1,35 @@
-import { useRouter } from 'next/router' // インポート
-import { useEffect } from 'react' // 副作用を伴う処理用に導入
+import { NextPage } from 'next';
+import styled from 'styled-components';
 
-const Page = () => {
-    const router = useRouter() // useRouterの使用
-
-    // 以下のコメント部分のコメントを解除すると/userouterに移動するようになる
-    // useEffect(() => {
-    //     router.push('/userouter');
-    // });
-
-    return <span>{router.pathname}</span>;
+type ButtonProps = {
+    color: string;
+    backgroundColor: string;
 }
-export default Page;
+
+// 文字色と背景色がpropsから変更可能なボタンコンポーネント
+// 型引数にpropsの型を渡す
+const Button = styled.button<ButtonProps>`
+/* color, background, border-colorはpropsから渡す */
+color: ${(props) => props.color};
+background: ${(props) => props.backgroundColor};
+border: 2px solid ${(props) => props.color};
+
+font-size: 2em;
+margin: 1em;
+padding: 0.25em 1em;
+border-radius: 8px;
+cursor: pointer;
+`
+
+const Pages: NextPage = () => {
+    return (
+        <div>
+            {/* 赤色の文字で透明な背景のボタンを表示 */}
+            <Button backgroundColor='transparent' color="#FF0000">Hello</Button>
+            {/* 白色の文字で青色の背景のボタンを表示 */}
+            <Button backgroundColor='#1E90FF' color='white'>World</Button>
+        </div>
+    )
+}
+
+export default Pages;
