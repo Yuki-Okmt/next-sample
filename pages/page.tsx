@@ -25,11 +25,18 @@ color: #1e90ff;
 font-size: 2em;
 `
 
+const Text = styled.span`
+color: ${(props) => props.theme.colors.red};
+font-size: ${(props) => props.theme.fontSizes[3]};
+margin: ${(props) => props.theme.space[2]};
+`
+
 const Page: NextPage = () => {
     return (
         <div>
             {/* 青色のリンクを表示する */}
             <StyledLink href="/">Go to Index</StyledLink>
+            <Text>Themeから参照した色を使用しています</Text>
         </div>
     )
 }
